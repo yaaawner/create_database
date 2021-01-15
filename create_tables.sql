@@ -18,7 +18,7 @@ GO
 
 -- Creating Members table
 CREATE TABLE [dbo].[Members](
-	[Member ID] [int] NOT NULL,
+	[Member ID] [int] NOT NULL IDENTITY(1,1),
 	[Member Name] [nvarchar](max) NOT NULL,
 	[Date] [date] NOT NULL,
 	CONSTRAINT [PK_Members] PRIMARY KEY ([Member ID])
