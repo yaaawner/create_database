@@ -2,12 +2,12 @@ USE [Library_2021]
 GO
 
 -- Checking if tables already exist, if so drop them
+IF OBJECT_ID('dbo.Reservation') IS NOT NULL
+    DROP TABLE [dbo].[Reservation]
 IF OBJECT_ID('dbo.Members') IS NOT NULL
     DROP TABLE [dbo].[Members]
 IF OBJECT_ID('dbo.Books') IS NOT NULL
     DROP TABLE [dbo].[Books]
-IF OBJECT_ID('dbo.Reservation') IS NOT NULL
-    DROP TABLE [dbo].[Reservation]
 GO
 
 SET ANSI_NULLS ON
@@ -36,4 +36,19 @@ CREATE TABLE [dbo].[Books] (
 	[Available] [int] NOT NULL,
 	CONSTRAINT [PK_Books] PRIMARY KEY ([Book ID]),
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Reservation] (
+	[Reservation ID] [int] NOT NULL IDENTITY(1,1),
+	[Member ID] [int] NOT NULL,
+	[Book ID] [int] NOT NULL,
+	[Issue date] [date] NOT NULL,
+	[Return date] [date] NOT NULL,
+	[Checkpoint] [bit] NOT NULL, 
+	CONSTRAINT [PK_Reservation] PRIMARY KEY ([Reservation ID]),
+	CONSTRAINT [FK_Reservation_Members] FOREIGN KEY ([Member ID])
+		REFERENCES [dbo].[Members]([Member ID]),
+	CONSTRAINT [FK_Reservation_Books] FOREIGN KEY ([Book ID])
+		REFERENCES [dbo].[Books]([Book ID]),
+) ON [PRIMARY]
 GO
