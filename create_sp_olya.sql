@@ -139,3 +139,18 @@ BEGIN
 		[Book ID] = @id
 END
 GO
+
+CREATE PROCEDURE [AddBook]
+(
+	@title [nvarchar](max),
+	@author [nvarchar](max),
+	@year [int],
+	@place [nvarchar](max),
+	@house [nvarchar](max),
+	@total [int],
+	@available[int]
+) AS 
+BEGIN
+	INSERT INTO [dbo].[Books] VALUES(@title, @author, @year, @place, @house, @total, @available)
+END
+GO
