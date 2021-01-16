@@ -46,3 +46,27 @@ BEGIN
 			FOREIGN KEY ([Member ID]) REFERENCES [dbo].[Members]([Member ID])
 END
 GO
+
+CREATE PROCEDURE [ShowAllBooks]
+AS
+BEGIN
+	SELECT *
+	FROM [dbo].[Books]
+END
+GO
+
+CREATE PROCEDURE [ShowAllMembers]
+AS
+BEGIN
+	SELECT *
+	FROM [dbo].[Members]
+END
+GO
+
+CREATE PROCEDURE [ShowAllReservation]
+AS
+BEGIN
+	SELECT *
+	FROM [dbo].[Reservation]
+END
+GO
