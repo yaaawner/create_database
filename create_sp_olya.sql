@@ -70,3 +70,18 @@ BEGIN
 	FROM [dbo].[Reservation]
 END
 GO
+
+CREATE PROCEDURE [DeleteBook]
+(
+	@id [int]
+)
+AS
+BEGIN
+	IF NOT EXISTS
+	   (SELECT * FROM [dbo].[Reservation]
+	    WHERE [Book ID] = @id)
+
+	DELETE FROM [dbo].[Books]
+	WHERE [Book ID] = @id
+END 
+GO
