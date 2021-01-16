@@ -85,3 +85,57 @@ BEGIN
 	WHERE [Book ID] = @id
 END 
 GO
+
+CREATE PROCEDURE [UpdateBook]
+(
+	@id [int],
+	@title [nvarchar](max),
+	@author [nvarchar](max),
+	@year [int],
+	@place [nvarchar](max),
+	@house [nvarchar](max),
+	@total [int],
+	@available[int]
+) AS
+BEGIN
+	UPDATE
+		[dbo].[Books]
+	SET
+		[Title] = CASE
+			WHEN @title IS NOT NULL THEN @title
+			ELSE [Title]
+		END,
+	    
+		[Author] = CASE
+			WHEN @author IS NOT NULL THEN @author
+			ELSE [Author]
+		END,
+
+		[Year of publication] = CASE
+			WHEN @year IS NOT NULL THEN @year
+			ELSE [Year of publication]
+		END,
+		
+		[Place of publication] = CASE
+			WHEN @place IS NOT NULL THEN @place
+			ELSE [Place of publication]
+		END,
+		
+		[Publishing house] = CASE
+			WHEN @house IS NOT NULL THEN @house
+			ELSE [Publishing house]
+		END,
+		
+		[Total] = CASE
+			WHEN @total IS NOT NULL THEN @total
+			ELSE [Total]
+		END,
+
+		[Available] = CASE
+			WHEN @available IS NOT NULL THEN @available
+			ELSE [Available]
+		END
+	WHERE
+		[Book ID] = @id
+END
+GO
